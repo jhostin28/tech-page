@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech World 2025</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0f0f13;
+      color: #e2e2e8;
+      min-height: 100vh;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 2.5rem;
+      border-bottom: 1px solid #1e1e2e;
+      background: #0f0f13;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 18px;
+      font-weight: 600;
+      color: #7c6fff;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #a0a0b0;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: #e2e2e8; }
+
+    .hero {
+      text-align: center;
+      padding: 5rem 2rem 4rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(124, 111, 255, 0.15);
+      color: #9d8fff;
+      border: 1px solid rgba(124, 111, 255, 0.3);
+      font-size: 12px;
+      padding: 4px 16px;
+      border-radius: 20px;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    h1 {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      color: #ffffff;
+      letter-spacing: -1px;
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, #7c6fff, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 16px;
+      color: #8888a0;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      padding: 12px 28px;
+      background: #7c6fff;
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .hero-btn:hover { background: #6a5ce8; transform: translateY(-1px); }
+
+    section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #7c6fff;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 2rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: #16161f;
+      border: 1px solid #1e1e2e;
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .card:hover {
+      border-color: rgba(124, 111, 255, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(124, 111, 255, 0.12);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #e2e2e8;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: #6666804;
+      line-height: 1.6;
+      color: #70708a;
+    }
+
+    .trends {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .trend-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 18px;
+      background: #16161f;
+      border: 1px solid #1e1e2e;
+      border-radius: 10px;
+      transition: border-color 0.2s;
+    }
+
+    .trend-item:hover { border-color: #2e2e42; }
+
+    .trend-num {
+      font-size: 13px;
+      font-weight: 600;
+      color: #7c6fff;
+      min-width: 24px;
+    }
+
+    .trend-label {
+      font-size: 14px;
+      color: #c8c8d8;
+      flex: 1;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    .tag-hot { background: rgba(239, 68, 68, 0.12); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.2); }
+    .tag-new { background: rgba(34, 197, 94, 0.12); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.2); }
+    .tag-stable { background: rgba(148, 163, 184, 0.1); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.2); }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      margin-top: 1rem;
+    }
+
+    .stat {
+      background: #16161f;
+      border: 1px solid #1e1e2e;
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 32px;
+      font-weight: 700;
+      color: #7c6fff;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: #70708a;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid #1e1e2e;
+      font-size: 13px;
+      color: #50506a;
+    }
+
+    footer span { color: #7c6fff; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">⚡ TechWorld</div>
+    <ul class="nav-links">
+      <li><a href="#areas">Áreas</a></li>
+      <li><a href="#tendencias">Tendencias</a></li>
+      <li><a href="#stats">Stats</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <div class="badge">Tecnología · 2025</div>
+    <h1>El futuro del<br><span>desarrollo de software</span></h1>
+    <p>Explora las tendencias, herramientas y conceptos que están transformando el mundo tech en 2025.</p>
+    <a href="#areas" class="hero-btn">Explorar →</a>
+  </div>
+
+  <section id="areas">
+    <div class="section-label">Áreas clave</div>
+    <div class="section-title">¿Qué está dominando el sector?</div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🧠</div>
+        <h3>Inteligencia Artificial</h3>
+        <p>Modelos de lenguaje, visión artificial y automatización con IA generativa.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">☁️</div>
+        <h3>Cloud Computing</h3>
+        <p>AWS, Azure y GCP como base de la infraestructura moderna y escalable.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔒</div>
+        <h3>Ciberseguridad</h3>
+        <p>Protección de datos, ethical hacking y auditorías de sistemas críticos.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📱</div>
+        <h3>Desarrollo Móvil</h3>
+        <p>Aplicaciones nativas e híbridas para iOS y Android con React Native y Flutter.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚙️</div>
+        <h3>DevOps & CI/CD</h3>
+        <p>Automatización de pipelines, contenedores Docker y orquestación con Kubernetes.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🗄️</div>
+        <h3>Bases de Datos</h3>
+        <p>SQL, NoSQL, bases vectoriales y arquitecturas distribuidas para big data.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tendencias" style="border-top: 1px solid #1e1e2e;">
+    <div class="section-label">Tendencias</div>
+    <div class="section-title">Lo más relevante en 2025</div>
+    <div class="trends">
+      <div class="trend-item">
+        <span class="trend-num">01</span>
+        <span class="trend-label">Generative AI & Large Language Models</span>
+        <span class="tag tag-hot">🔥 Hot</span>
+      </div>
+      <div class="trend-item">
+        <span class="trend-num">02</span>
+        <span class="trend-label">Edge Computing & IoT</span>
+        <span class="tag tag-new">Nuevo</span>
+      </div>
+      <div class="trend-item">
+        <span class="trend-num">03</span>
+        <span class="trend-label">Platform Engineering & DevOps</span>
+        <span class="tag tag-stable">Estable</span>
+      </div>
+      <div class="trend-item">
+        <span class="trend-num">04</span>
+        <span class="trend-label">Web Assembly (WASM)</span>
+        <span class="tag tag-new">Nuevo</span>
+      </div>
+      <div class="trend-item">
+        <span class="trend-num">05</span>
+        <span class="trend-label">Quantum Computing</span>
+        <span class="tag tag-hot">🔥 Hot</span>
+      </div>
+      <div class="trend-item">
+        <span class="trend-num">06</span>
+        <span class="trend-label">Zero Trust Security</span>
+        <span class="tag tag-stable">Estable</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="stats" style="border-top: 1px solid #1e1e2e;">
+    <div class="section-label">En números</div>
+    <div class="section-title">El impacto del tech global</div>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">97M</div>
+        <div class="stat-label">Desarrolladores en el mundo</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">$5T</div>
+        <div class="stat-label">Mercado global de software</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">83%</div>
+        <div class="stat-label">Empresas usando cloud</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">40%</div>
+        <div class="stat-label">Crecimiento anual de IA</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Hecho por <span>Jhostin Raposo</span> · ITLA 2025 · Práctica 3
+  </footer>
+
+</body>
+</html>
